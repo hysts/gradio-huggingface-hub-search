@@ -86,6 +86,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    margin: 0;
     padding: 3px 10px;
     border: 1px solid var(--border-color-primary, #e0e0e0);
     border-radius: 999px;
