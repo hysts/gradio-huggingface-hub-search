@@ -6,8 +6,13 @@ import json
 
 import pytest
 
-from huggingface_hub_search import HuggingFaceHubSearch, _build_filters_html, _normalize_search_type
-from huggingface_hub_search import _RESULT_LIMIT_DEFAULT, _RESULT_LIMIT_MAX
+from huggingface_hub_search import (
+    _RESULT_LIMIT_DEFAULT,
+    _RESULT_LIMIT_MAX,
+    HuggingFaceHubSearch,
+    _build_filters_html,
+    _normalize_search_type,
+)
 
 # ---------------------------------------------------------------------------
 # _normalize_search_type
