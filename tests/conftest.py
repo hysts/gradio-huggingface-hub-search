@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from typing import TYPE_CHECKING
 
 import pytest
@@ -11,10 +9,7 @@ import pytest
 if TYPE_CHECKING:
     from collections.abc import Generator
 
-# Make the demo app importable from every worker process.
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "demo"))
-
-from app import demo as _demo  # type: ignore[import-untyped]
+from _demo import demo as _demo
 
 
 @pytest.fixture(scope="module")
