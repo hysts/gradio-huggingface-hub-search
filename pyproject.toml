@@ -50,6 +50,7 @@ unfixable = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
+"demo/**/*.py" = ["INP001"]
 "tests/**/*.py" = ["INP001", "S101", "PLR2004"]
 
 [tool.ruff.lint.pydocstyle]
