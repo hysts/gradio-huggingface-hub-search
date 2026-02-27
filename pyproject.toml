@@ -1,6 +1,6 @@
 [project]
 name = "huggingface-hub-search"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Gradio custom HTML component for searching the Hugging Face Hub"
 readme = "README.md"
 license = "MIT"
