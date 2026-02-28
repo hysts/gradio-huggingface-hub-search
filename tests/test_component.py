@@ -224,3 +224,9 @@ class TestApiInfo:
     def test_has_url_property(self, component: HuggingFaceHubSearch) -> None:
         info = component.api_info()
         assert "url" in info["properties"]
+
+    def test_has_description(self, component: HuggingFaceHubSearch) -> None:
+        info = component.api_info()
+        assert "description" in info
+        assert isinstance(info["description"], str)
+        assert len(info["description"]) > 0

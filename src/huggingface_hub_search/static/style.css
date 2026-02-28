@@ -83,15 +83,17 @@
 }
 
 .hf-search .hf-search-filter-chip {
+    all: unset;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    margin: 0;
     padding: 3px 10px;
     border: 1px solid var(--border-color-primary, #e0e0e0);
     border-radius: 999px;
+    font-family: inherit;
     font-size: 12px;
     font-weight: 500;
+    line-height: 1.5;
     cursor: pointer;
     user-select: none;
     transition: background-color 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;

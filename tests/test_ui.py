@@ -597,3 +597,58 @@ def test_result_limit_larger_than_default_shows_more_items(browser: Browser) -> 
         pg.close()
     finally:
         _demo.close()
+
+
+# ---------------------------------------------------------------------------
+# 16) Full round-trip morph resilience: select → clear → search → select
+# ---------------------------------------------------------------------------
+
+
+def test_full_round_trip_morph_resilience(page: Page) -> None:
+    """UI elements and handlers survive multiple select/clear cycles."""
+    block = get_search_block(page, "Search All")
+    search_input = block.locator(".hf-search-input")
+    dropdown = block.locator(".hf-search-dropdown")
+    chips = block.locator(".hf-search-filter-chip")
+    clear_btn = block.locator(".hf-search-clear")
+
+    expect(chips).to_have_count(5)
+
+    # --- Round 1: search + select ---
+    search_input.fill("bert")
+    expect(dropdown).to_have_class("hf-search-dropdown hf-search-open")
+    first_item = dropdown.locator(".hf-search-item").first
+    expect(first_item).to_be_visible()
+    first_item.click()
+    expect(dropdown).not_to_have_class("hf-search-dropdown hf-search-open")
+
+    # Post-morph: chips present, clear button visible
+    expect(chips).to_have_count(5)
+    expect(clear_btn).to_be_visible()
+
+    # --- Clear ---
+    clear_btn.click()
+    expect(search_input).to_have_value("")
+    expect(clear_btn).to_be_hidden()
+    expect(chips).to_have_count(5)
+
+    # --- Round 2: search again + select again ---
+    search_input.fill("gpt")
+    expect(dropdown).to_have_class("hf-search-dropdown hf-search-open")
+    second_item = dropdown.locator(".hf-search-item").first
+    expect(second_item).to_be_visible()
+    second_id = second_item.get_attribute("data-id")
+    second_item.click()
+
+    # Post-morph: input has new value, chips still present, handlers work
+    expect(search_input).to_have_value(second_id)
+    expect(dropdown).not_to_have_class("hf-search-dropdown hf-search-open")
+    expect(chips).to_have_count(5)
+    for i in range(5):
+        expect(chips.nth(i)).to_be_visible()
+
+    # Event handlers still work after two round-trips
+    chips.nth(0).click()
+    expect(chips.nth(0)).to_have_class("hf-search-filter-chip active")
+    for i in range(1, 5):
+        expect(chips.nth(i)).to_have_class("hf-search-filter-chip")

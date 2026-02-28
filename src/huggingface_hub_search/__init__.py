@@ -130,6 +130,7 @@ class HuggingFaceHubSearch(gr.HTML):
     def api_info(self) -> dict[str, Any]:
         return {
             "type": "object",
+            "description": "Selected Hugging Face Hub entity with its id, type, and URL.",
             "properties": {
                 "id": {"type": "string"},
                 "type": {"type": "string"},
