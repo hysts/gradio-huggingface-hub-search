@@ -20,7 +20,7 @@ Built on top of `gr.HTML` (Gradio 6's custom HTML component API), with no extra 
 pip install huggingface-hub-search
 ```
 
-Requires Python 3.12+ and Gradio 6.6+.
+Requires Python 3.12+ and Gradio 6.10+.
 
 ## Quick start
 

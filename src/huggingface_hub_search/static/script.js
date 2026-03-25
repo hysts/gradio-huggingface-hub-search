@@ -2,7 +2,6 @@
     "use strict";
 
     var root = element.querySelector(".hf-search");
-    var dataScript = element.querySelector("script.hf-search-data");
     var inputEl = root.querySelector(".hf-search-input");
     var clearEl = root.querySelector(".hf-search-clear");
     var dropdown = root.querySelector(".hf-search-dropdown");
@@ -464,9 +463,9 @@
         }
     }
 
-    // --- Value sync from Python (MutationObserver) ---
+    // --- Value sync from Python via watch() ---
     function handleValue() {
-        var raw = dataScript.textContent.trim();
+        var raw = props.value;
         if (!raw || raw === "null" || raw === "undefined") {
             syncChipVisuals();
             return;
@@ -489,8 +488,7 @@
         syncChipVisuals();
     }
 
-    var observer = new MutationObserver(function () { handleValue(); });
-    observer.observe(dataScript, { childList: true, characterData: true, subtree: true });
+    watch("value", handleValue);
 
     // Initial value sync
     handleValue();
