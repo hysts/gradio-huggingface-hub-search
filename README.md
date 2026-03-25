@@ -1,6 +1,6 @@
 # huggingface-hub-search
 
-[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/hysts-gradio-custom-html/huggingface-hub-search)
+[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/hysts-gradio-custom-html/huggingface-hub-search-demo)
 
 A Gradio custom component that provides a live search box for the Hugging Face Hub — models, datasets, spaces, users, and organizations.
 
